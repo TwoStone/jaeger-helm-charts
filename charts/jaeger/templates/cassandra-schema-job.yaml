@@ -14,6 +14,9 @@ metadata:
 {{- end }}
 spec:
   activeDeadlineSeconds: {{ .Values.schema.activeDeadlineSeconds }}
+{{- if and (.Values.schema.ttlSecondsAfterFinished) (semverCompare ">=1.23.x" .Capabilities.KubeVersion.Version) }}
+  ttlSecondsAfterFinished: {{ .Values.schema.ttlSecondsAfterFinished }}
+{{- end }}
   template:
     metadata:
       name: {{ include "jaeger.fullname" . }}-cassandra-schema

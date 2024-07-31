@@ -258,6 +258,8 @@ schema:
   podSecurityContext: {}
   ## Deadline for cassandra schema creation job
   activeDeadlineSeconds: 300
+  ## Time to live after schema creation job has finished - requires kubeVersion >= 1.23
+  ttlSecondsAfterFinished:
   extraEnv:
     []
     # - name: MODE
